@@ -1,0 +1,63 @@
+{
+  "name": "@xn-sakina/dora",
+  "version": "1.0.0",
+  "main": "dist/exports.js",
+  "types": "dist/exports.d.ts",
+  "description": "Dora is a deps precompile utils",
+  "author": "fz6m",
+  "homepage": "https://github.com/xn-sakina/dora#README",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xn-sakina/dora"
+  },
+  "keywords": [
+    "dora",
+    "dep-precompile",
+    "precompile",
+    "deps",
+    "deps-builder"
+  ],
+  "bin": {
+    "dora": "bin/dora.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "test": "tsx ./src/index.ts",
+    "format": "prettier --write --parser typescript --cache \"./src/**/*.{ts,tsx}\"",
+    "prepublishOnly": "pnpm format && pnpm build",
+    "push": "npm publish --registry https://registry.npmjs.com/"
+  },
+  "dependencies": {
+    "@taskr/clear": "^1.1.0",
+    "@taskr/esnext": "^1.1.0",
+    "@vercel/ncc": "^0.36.1",
+    "c12": "^1.1.0",
+    "chalk": "^4.0.0",
+    "commander": "^10.0.0",
+    "find-up": "^5.0.0",
+    "resolve": "^1.22.1",
+    "taskr": "^1.1.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/node": "^18.11.18",
+    "@types/resolve": "^1.20.2",
+    "@xn-sakina/dora": "link:./",
+    "@xn-sakina/mental": "^3.1.0",
+    "prettier": "^2.8.3",
+    "sass-loader": "^13.2.0",
+    "satori": "^0.1.1",
+    "terser": "^5.16.1",
+    "tsx": "^3.12.2",
+    "typescript": "5.0.0-beta"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@7.24.2",
+  "publishConfig": {
+    "access": "public"
+  }
+}
