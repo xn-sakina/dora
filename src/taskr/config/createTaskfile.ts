@@ -79,10 +79,10 @@ export async function fromEsmToCjs(opts: IDoraEsmToCjsOptions) {
 export async function createTaskfile(opts: IDoraCreateTaskfileOptions) {
   const { cwd, config, argv } = opts
 
+  const hasSpecifiedDep = typeof argv?.dep === 'string' && argv?.dep?.length
+
   const _packages = normalizeDeps(
-    typeof argv?.dep === 'string' && argv?.dep?.length
-      ? [argv.dep]
-      : config?.deps || []
+    hasSpecifiedDep ? [argv.dep as string] : config?.deps || []
   )
   const packages = _packages.map((dep) => dep.name)
   const taskr = config?.taskr
@@ -115,7 +115,9 @@ export async function createTaskfile(opts: IDoraCreateTaskfileOptions) {
 
   es.ncc = function* ncc(task: any, opts: any) {
     const func = async () => {
-      await task.clear('compiled').parallel(tasks, opts)
+      await task
+        .clear(hasSpecifiedDep ? `compiled/${argv.dep}` : `compiled`)
+        .parallel(tasks, opts)
       // await task.clear('compiled').serial(tasks, opts)
       await task.start('write_compiled_ts_declaration')
     }
@@ -125,7 +127,9 @@ export async function createTaskfile(opts: IDoraCreateTaskfileOptions) {
     task: any,
     _opts: any
   ) {
-    task.source('types/compiled.d.ts').dts({ packages }).target('types')
+    if (!hasSpecifiedDep) {
+      task.source('types/compiled.d.ts').dts({ packages }).target('types')
+    }
   }
 
   return es

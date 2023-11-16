@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc",
-    "test": "tsx ./src/index.ts",
+    "test:build:all": "node ./bin/dora.js build",
+    "test:build:chalk": "node ./bin/dora.js build --none 1 --dep chalk",
     "format": "prettier --write --parser typescript --cache \"./src/**/*.{ts,tsx}\"",
     "prepublishOnly": "pnpm format && pnpm build",
     "push": "npm publish --registry https://registry.npmjs.com/"

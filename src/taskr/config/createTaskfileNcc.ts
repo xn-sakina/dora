@@ -96,6 +96,12 @@ export const createTaskfileNcc = async (opts: {
     return Module._resolveFilename(request, m, false, options)
   }
 
+  const isDisableCache = !!process.env.DISABLE_CACHE
+  const cacheProps = isDisableCache ? { cache: false } : {}
+  if (isDisableCache) {
+    console.log(`>>> DISABLE_CACHE`)
+  }
+
   // exports
   const es = function (task: any, _utils: any) {
     task.plugin('ncc', {}, function* (file: any, options: any) {
@@ -103,8 +109,6 @@ export const createTaskfileNcc = async (opts: {
         options.externals = { ...options.externals }
         delete options.externals[options.packageName]
       }
-
-      const cacheProps = process.env.DISABLE_CACHE ? { cache: false } : {}
 
       return ncc(join(cwd, file.dir, file.base), {
         filename: file.base,
