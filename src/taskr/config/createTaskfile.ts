@@ -25,6 +25,9 @@ export async function fromEsmToCjs(opts: IDoraEsmToCjsOptions) {
     .replaceAll('-', '_')
     .replaceAll('/', '_')}`
 
+  const pkgPath = sync(`${packageName}/package.json`, { basedir })
+  const pkgContent = require(pkgPath)
+
   const source =
     overrideSource || path.relative(basedir, sync(packageName, { basedir }))
   const targetDir = `compiled/${packageName}`
@@ -33,6 +36,10 @@ export async function fromEsmToCjs(opts: IDoraEsmToCjsOptions) {
     source,
     targetDir,
     taskName,
+    pkg: {
+      path: pkgPath,
+      content: pkgContent,
+    },
     options: opts,
   }
 

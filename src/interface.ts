@@ -10,7 +10,12 @@ export interface IHookContext {
   source: string
   targetDir: string
   taskName: string
+  pkg: IPkg
   options: IDoraEsmToCjsOptions
+}
+export interface IPkg {
+  path: string
+  content: Record<string, any>
 }
 export interface ITaskrTaskParams {
   task: any
