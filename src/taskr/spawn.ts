@@ -9,7 +9,7 @@ import Taskr from 'taskr/lib/taskr'
 
 // lib/spawn.js > default
 export const spawn = async (opts: IContext) => {
-  const { cwd, config, pkg } = opts
+  const { cwd, config, pkg, argv } = opts
   const plugins = await load(opts)
 
   const nccPlugin = await createTaskfileNcc({
@@ -20,6 +20,7 @@ export const spawn = async (opts: IContext) => {
   const tasks = await createTaskfile({
     cwd,
     config,
+    argv
   })
 
   // ensure compiled.d.ts exists

@@ -1,4 +1,4 @@
-import type { IDoraConfig } from '../interface'
+import type { IArgv, IDoraConfig } from '../interface'
 
 export interface IPkg {
   dependencies?: Record<string, string>
@@ -8,6 +8,7 @@ export interface IPkg {
 
 export interface IBase {
   cwd: string
+  argv: IArgv
   pkg: IPkg
   pkgPath: string
   config: IDoraConfig

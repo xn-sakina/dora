@@ -70,9 +70,13 @@ export async function fromEsmToCjs(opts: IDoraEsmToCjsOptions) {
 }
 
 export async function createTaskfile(opts: IDoraCreateTaskfileOptions) {
-  const { cwd, config } = opts
+  const { cwd, config, argv } = opts
 
-  const _packages = normalizeDeps(config?.deps || [])
+  const _packages = normalizeDeps(
+    typeof argv?.dep === 'string' && argv?.dep?.length
+      ? [argv.dep]
+      : config?.deps || []
+  )
   const packages = _packages.map((dep) => dep.name)
   const taskr = config?.taskr
 

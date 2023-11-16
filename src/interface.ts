@@ -73,8 +73,13 @@ export interface IDoraConfig {
   // TODO: hook ncc plugin
 }
 
-export interface IOptions {
+export interface IOptions extends IArgv {
   cwd: string
+}
+
+export interface IArgv {
+  dep?: string
+  [key: string]: any
 }
 
 export interface IPrecompileOptions extends IOptions {}
@@ -91,4 +96,5 @@ export interface IDoraEsmToCjsOptions {
 export interface IDoraCreateTaskfileOptions {
   cwd: string
   config: IDoraConfig
+  argv: IArgv
 }

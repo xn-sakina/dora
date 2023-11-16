@@ -15,6 +15,8 @@ export const main = async () => {
   program
     .command('build')
     .option('-c, --cwd <cwd>', 'cwd', cwd)
+    .option('-d, --dep <dep>', 'build only one dep')
+    .allowUnknownOption(true)
     .description(
       `Build some deps from ${chalk.bold.blue('esm')} to ${chalk.bold.green(
         'cjs'
@@ -29,7 +31,7 @@ export const main = async () => {
 }
 
 async function precompile(opts: IPrecompileOptions) {
-  const { cwd } = opts
+  const { cwd, ...argv } = opts
   const parsedConfig = await readConfig({ cwd })
   const pkgPath = join(cwd, 'package.json')
   const pkg = require(pkgPath)
@@ -38,6 +40,7 @@ async function precompile(opts: IPrecompileOptions) {
     pkgPath,
     pkg,
     cwd,
+    argv,
     config: parsedConfig?.config || {},
   }
 
