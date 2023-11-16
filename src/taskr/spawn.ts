@@ -20,7 +20,7 @@ export const spawn = async (opts: IContext) => {
   const tasks = await createTaskfile({
     cwd,
     config,
-    argv
+    argv,
   })
 
   // ensure compiled.d.ts exists
