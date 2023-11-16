@@ -34,29 +34,29 @@
   "dependencies": {
     "@taskr/clear": "^1.1.0",
     "@taskr/esnext": "^1.1.0",
-    "@vercel/ncc": "^0.36.1",
-    "c12": "^1.1.0",
-    "chalk": "^4.0.0",
-    "commander": "^10.0.0",
+    "@vercel/ncc": "^0.38.1",
+    "c12": "^1.5.1",
+    "chalk": "^4.1.2",
+    "commander": "^10.0.1",
     "find-up": "^5.0.0",
-    "resolve": "^1.22.1",
+    "resolve": "^1.22.8",
     "taskr": "^1.1.0"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "@types/node": "^18.11.18",
-    "@types/resolve": "^1.20.2",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^18.18.9",
+    "@types/resolve": "^1.20.5",
     "@xn-sakina/dora": "link:./",
     "@xn-sakina/mental": "^3.1.0",
-    "prettier": "^2.8.3",
-    "sass-loader": "^13.2.0",
-    "satori": "^0.1.1",
-    "terser": "^5.16.1",
-    "tsx": "^3.12.2",
-    "typescript": "5.0.0-beta"
+    "prettier": "^2.8.8",
+    "sass-loader": "^13.3.2",
+    "satori": "^0.1.2",
+    "terser": "^5.24.0",
+    "tsx": "^4.1.2",
+    "typescript": "5.2.2"
   },
   "license": "MIT",
-  "packageManager": "pnpm@7.24.2",
+  "packageManager": "pnpm@8.10.0",
   "publishConfig": {
     "access": "public"
   }
