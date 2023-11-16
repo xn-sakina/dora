@@ -104,12 +104,15 @@ export const createTaskfileNcc = async (opts: {
         delete options.externals[options.packageName]
       }
 
+      const cacheProps = process.env.DISABLE_CACHE ? { cache: false } : {}
+
       return ncc(join(cwd, file.dir, file.base), {
         filename: file.base,
         minify: options.minify !== false,
         assetBuilds: true,
         esm: false,
         target: 'es2019',
+        ...cacheProps,
         ...options,
       }).then(({ code, assets }: any) => {
         Object.keys(assets).forEach((key) => {
