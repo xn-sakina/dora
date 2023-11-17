@@ -81,10 +81,11 @@ export async function createTaskfile(opts: IDoraCreateTaskfileOptions) {
 
   const hasSpecifiedDep = typeof argv?.dep === 'string' && argv?.dep?.length
 
-  const _packages = normalizeDeps(
-    hasSpecifiedDep ? [argv.dep as string] : config?.deps || []
-  )
-  const packages = _packages.map((dep) => dep.name)
+  const normalizedDeps = normalizeDeps(config?.deps || [])
+  const _packages = hasSpecifiedDep
+    ? [normalizedDeps.find((dep) => dep.name === argv.dep)!]
+    : normalizedDeps
+  const packages = _packages.filter(Boolean).map((dep) => dep.name)
   const taskr = config?.taskr
 
   // exports
